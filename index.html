@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Dice Roller</title>
+    <link rel="stylesheet" href="main.css">
+    <script defer src="main.js"></script>
+</head>
+<body onload="rollDice()"> <!-- Automatically roll the dice on first load -->
+  <!-- Header -->
+  <header>
+    <img src="images/logo.png" alt="Logo" class="logo"> <!-- old logo -->
+    <h1>DINO DICE ROLLER</h1>
+  </header>
+
+  <!-- Instructions -->
+  <section class="instructions">
+    <p>In Yahtzee, a player will roll five dice up to 3 times</p>
+    <p>This application simulates rolling two dice.</p>
+    <p>The dice will automatically roll once when you load the page.</p>
+    <p>Click the "Roll Dice" button or press <strong>Enter</strong> to roll again.</p>
+  </section>
+
+  <!-- Dice Roll Section -->
+  <section class="roller">
+    <div class="dice-fields">
+      <div class="field">
+        <label for="die1">Die 1:</label>
+        <input type="text" id="die1" readonly>
+        <label><input type="checkbox" id="hold1"> Hold</label>
+      </div>
+      <div class="field">
+        <label for="die2">Die 2:</label>
+        <input type="text" id="die2" readonly>
+        <label><input type="checkbox" id="hold2"> Hold</label>
+      </div>
+      <div class="field">
+        <label for="die3">Die 3:</label>
+        <input type="text" id="die3" readonly>
+        <label><input type="checkbox" id="hold3"> Hold</label>
+      </div>
+      <div class="field">
+        <label for="die4">Die 4:</label>
+        <input type="text" id="die4" readonly>
+        <label><input type="checkbox" id="hold4"> Hold</label>
+      </div>
+      <div class="field">
+        <label for="die5">Die 5:</label>
+        <input type="text" id="die5" readonly>
+        <label><input type="checkbox" id="hold5"> Hold</label>
+      </div>
+    </div>
+    <button id="rollBtn" autofocus>Roll Dice</button>
+  </section>
+    
+</body>
+</html>
