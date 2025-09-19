@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f9f9f9;
+  background:#67a58e;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -12,7 +12,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #228700;
+  background: #6a6627;
   color: white;
   padding: 20px;
 }
@@ -94,7 +94,7 @@ input {
 button {
   margin-top: 20px;
   padding: 10px 20px;
-  background: #4a90e2;
+  background: #3c8029;
   color: white;
   border: none;
   border-radius: 8px;
