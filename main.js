@@ -1,33 +1,47 @@
 //5 dice, creates a list starting values to 0
 const NUM_DICE = 5; 
 let diceValues = [0, 0, 0, 0, 0];
+//API - hosted on azure and is being called here
+const API_URL = 'dice-api-gua4cnhdedhwe7h9.centralus-01.azurewebsites.net';
 
-// Function to roll the dice and update values
-function rollDice() {
-  //check which dice are being held (ensures they are not rolled)
-  for (let i = 0; i < NUM_DICE; i++) {
-    const hold = document.getElementById(`hold${i+1}`).checked;
-    if (!hold) { //if not hold, they will be rolled to a random number 1-6
-      diceValues[i] = Math.floor(Math.random() * 6) + 1;
-    }
-    document.getElementById(`die${i+1}`).value = diceValues[i];
+async function rollDice() { //async function because it fetches API data
+  // Get hold checkboxes
+  const holdDice = []; //array to store hold status
+  for (let i = 0; i < NUM_DICE; i++) { // for each dice, check if hold is checked
+    holdDice[i] = document.getElementById(`hold${i+1}`).checked;
   }
-  document.getElementById("rollBtn").focus(); 
+
+  try { //try block to fetch dice rolls from api
+    const response = await fetch(`${API_URL}/roll/${NUM_DICE}`);
+    const data = await response.json();
+
+    //update dice values if not held
+    for (let i = 0; i < NUM_DICE; i++) {
+      if (!holdDice[i]) diceValues[i] = data.rolls[i];
+      document.getElementById(`die${i+1}`).value = diceValues[i];
+    }
+  } catch (err) { // error catch block
+    console.error('Error fetching dice rolls:', err);
+  }
 }
 
-//Initialize the game after fully loading
-document.addEventListener("DOMContentLoaded", () => {
-  // Initialize dice values on first load
-  for (let i = 0; i < NUM_DICE; i++) {
-    diceValues[i] = Math.floor(Math.random() * 6) + 1; 
-    document.getElementById(`die${i+1}`).value = diceValues[i];
-    document.getElementById(`hold${i+1}`).checked = false;
+//call API on loading the page
+async function onloadAPI() {
+  try {
+    await fetch(`${API_URL}/roll/1`);
+  } catch (err) {
+    console.warn('Wake-up API call failed:', err);
   }
-  document.getElementById("rollBtn").addEventListener("click", rollDice); //gives roll button functionality
-  // Allows the Enter key to roll dice
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      rollDice(); //runs rollDice function after hitting enter
-    }
+}
+
+//initialize
+document.addEventListener('DOMContentLoaded', () => {
+  onloadAPI(); //Call API once on load
+
+  document.getElementById('rollBtn').addEventListener('click', rollDice);
+  document.addEventListener('keydown', (e) => { //allows enter key to roll the dice
+    if (e.key === "Enter") rollDice();
   });
+  //Initial roll
+  rollDice();
 });
