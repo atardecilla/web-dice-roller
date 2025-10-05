@@ -1,6 +1,6 @@
 const NUM_DICE = 5; 
 let diceValues = [0, 0, 0, 0, 0];
-const API_URL = 'https://web-dice-api-ajdfhah2fhfhb2bn.centralus-01.azurewebsites.net';
+const API_URL = 'https://dice-api-rg-dgb2czavcth2gbay.centralus-01.azurewebsites.net';
 
 async function rollDice() {
   const holdDice = [];
