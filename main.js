@@ -2,7 +2,7 @@
 const NUM_DICE = 5; 
 let diceValues = [0, 0, 0, 0, 0];
 //API - hosted on azure and is being called here
-const API_URL = 'dice-api-gua4cnhdedhwe7h9.centralus-01.azurewebsites.net';
+const API_URL = 'web-dice-api-ajdfhah2fhfhb2bn.centralus-01.azurewebsites.net';
 
 async function rollDice() { //async function because it fetches API data
   // Get hold checkboxes
